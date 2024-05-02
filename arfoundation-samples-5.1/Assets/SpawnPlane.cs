@@ -23,9 +23,16 @@ public class SpawnPlane : MonoBehaviour
     // reset plane the hand 
     public void ResetPlane()
     {
-        Plane.transform.localPosition = initialPosition;
-        initialRotation.y += 180;
-        Plane.transform.localRotation = initialRotation;
+        Plane.transform.localPosition = Camera.transform.position;
+        
+        Plane.transform.localRotation = Camera.transform.rotation;
+
+        // Calculate the rotation to rotate the plane around 180 degrees
+        Quaternion halfTurnRotation = Quaternion.Euler(0f, 180f, 0f);
+
+        // Apply half-turn rotation to the plane
+        Plane.transform.localRotation *= halfTurnRotation;
+
 
     }
 }
