@@ -1,5 +1,6 @@
 using UnityEngine.XR.Interaction.Toolkit.AffordanceSystem.Receiver.Primitives;
 using System.Collections;
+using UnityEngine.EventSystems;
 
 namespace UnityEngine.XR.ARFoundation.Samples
 
@@ -65,28 +66,30 @@ namespace UnityEngine.XR.ARFoundation.Samples
 
         void PlaceObjectAt(object sender, ARRaycastHit hitPose)
         {
-            if (canPlace)
+            if ( !EventSystem.current.IsPointerOverGameObject() )
             {
-                imageIndex++;
-                Quaternion rotation = Quaternion.Euler(0, hitPose.pose.rotation.eulerAngles.y + 270, 0);
-                Vector3 position = hitPose.pose.position;
-                // Use the rotation data as needed
-                // For example, you can extract euler angles:
-                //Vector3 eulerRotation = rotation.eulerAngles;
-                //float xAngle = eulerRotation.x;
-                //float yAngle = eulerRotation.y;
-                //float zAngle = eulerRotation.z;
-                m_SpawnedObject = Instantiate(m_Pictures[imageIndex % m_Pictures.Length], position, rotation, hitPose.trackable.transform.parent);
-            }
-            StartCoroutine(WaitForNextPlacement());
+                if (canPlace)
+                {
+                    //imageIndex++;
+                    Quaternion rotation = Quaternion.Euler(0, hitPose.pose.rotation.eulerAngles.y + 270, 0);
+                    Vector3 position = hitPose.pose.position;
+                    m_SpawnedObject = Instantiate(m_Pictures[imageIndex], position, rotation, hitPose.trackable.transform.parent);
+                }
+                StartCoroutine(WaitForNextPlacement());
+            }  
 
         }
 
         IEnumerator WaitForNextPlacement()
         {
             canPlace = false;
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(1f);
             canPlace = true;
+        }
+
+        public void SelectImage( int imageID )
+        {
+            imageIndex = imageID;
         }
     }
 }
