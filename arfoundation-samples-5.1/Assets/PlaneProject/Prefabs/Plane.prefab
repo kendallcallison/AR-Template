@@ -53,7 +53,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 12ac805f44b748444be96d2944fe69e4, type: 2}
+  - {fileID: 2100000, guid: 800a30af7fb485b43b47cec4e09524e3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -231,6 +231,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forwardSpeed: 10
   rotationSpeed: 100
+  maxRotationSpeed: 100
+  rotationAcceleration: 20
+  pitchSpeed: 50
+  maxPitchAngle: 60
+  right: {fileID: 0}
+  left: {fileID: 0}
+  up: {fileID: 0}
+  down: {fileID: 0}
+  pitch: 0
 --- !u!1 &7498301715615694529
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,7 +293,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 12ac805f44b748444be96d2944fe69e4, type: 2}
+  - {fileID: 2100000, guid: 800a30af7fb485b43b47cec4e09524e3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
